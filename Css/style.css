@@ -1,0 +1,70 @@
+:root{
+    --main_light_color: #fff;
+    --main_deep_color: #000;
+    --blocks_color: #020e76; 
+    --border_color: #999;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    background-color: var(--main_light_color);
+}
+
+.bg1{
+    background-color: var(--main_light_color);
+}
+
+.bg2{
+    background-color: var(--main_deep_color);
+}
+
+.text-color1{
+    color: var(--main_light_color);
+}
+
+.text-color2{
+    color: var(--main_deep_color);
+}
+
+.blockInfo {
+    display: flex;
+    margin: 0 30px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.electricityInfo {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.graphic {
+    border-left: 1px var(--border_color) solid;
+}
+
+img {
+    object-fit: contain;
+}
+
+.tempretureGraphic {
+    display: none;
+    width: auto;
+}
+
+.temperatureGraphicImg {
+    width: 60%;
+}
+
+.shemeItem {
+    width: auto;
+}
+
+.shemeImg {
+    width: 60%;
+}
+
+.timer {
+    min-width: 80px;
+}

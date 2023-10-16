@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4445/4445241.png" type="image/x-icon">
+
+    <title>Лабораторная 8</title>
+</head>
+<body>
+    
+    <header>
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col">
+                  <h1>Определение Энтропии</h1>  
+                  <hr>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container mt-2">
+            <div class="row mb-5">
+                <div class="col-lg-6 col-sm-12 mb-sm-5">
+                    <div class="shemeItem">
+                        <div class="">
+                            <h3 class="pb-2 mb-4">Схема установки:</h3>
+                            <img src="Assets/sheme.png" class="shemeImg mb-sm-4" alt="Image doesn't load">
+                        </div>
+                        
+                        <div class="">
+                            <h3 class="pb-2 mb-4">Зависимость mV от C⁰:</h3>
+                            <img src="Assets/VoltToTempLowQuality.png" class="shemeImg" alt="Image doesn't load">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graphic col-lg-6 col-12">
+                    <h3 class="mb-5">График:</h3>
+                    <canvas class="mb-5"></canvas>
+
+                    <div  class="col-12">    
+                        <div class="blockInfo">
+                            <div class="timer">0 c</div>
+                            <div class="controll-elements">
+                                <button class="btn btn-primary" id="toggleBtn">Включить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+<section class="bg2 text-color1 p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                Design and developer: Happy Crez / Владимир Горбунов ПИ-24
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="JS/index.js"></script>
+
+</body>
+</html>
