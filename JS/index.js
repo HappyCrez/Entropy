@@ -41,7 +41,6 @@ const maxTemp = 370;
 const meeltingTemp = 270;
 const roomTemp = 24;
 let bodyTemp;
-let temperature;
 
 // Graphic
 let graphCoordX, graphCoordY;
@@ -95,13 +94,13 @@ function startLaborator() {
     currentTime = new Date().getTime();
     timePass = (currentTime - timeStart) / 1000;
 
-    temperature = calculateTemperature(timePass, deltaTime);
+    let temperature = calculateTemperature(timePass, deltaTime);
     
-    graphCoordX =  timePass / graphStepAxisX * graphNumsDistance + graphXpos;
-    graphCoordY = axisYsize - temperature / graphStepY * graphNumsDistance;
+    graphCoordX =  calculateGraphCoordX(timePass);
+    graphCoordY = calculateGraphCoordY(temperature);
     graphic.push([graphCoordX, graphCoordY]);
     
-    thermocoupleCoordY = axisYsize - (0.035 * temperature) / thermocoupleStepY * graphNumsDistance;
+    thermocoupleCoordY = calculateThermocoupleCoordY(temperature);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     updateTimerLabel(timePass);
@@ -109,6 +108,18 @@ function startLaborator() {
     updateGraphic();
     
     if (temperature < roomTemp) stopLaborator();
+}
+
+function calculateThermocoupleCoordY(temperature) {
+    return axisYsize - (0.035 * temperature) / thermocoupleStepY * graphNumsDistance;
+}
+
+function calculateGraphCoordX(timePass) {
+    return timePass / graphStepAxisX * graphNumsDistance + graphXpos
+}
+
+function calculateGraphCoordY(temperature) {
+    return axisYsize - temperature / graphStepY * graphNumsDistance
 }
 
 function calculateTemperature(timePass, deltaTime) {
@@ -257,13 +268,14 @@ function hideAlerts() {
 
 function setup() {
     hideAlerts();
-
+    
+    bodyTemp = roomTemp;
     timeStart = new Date();
     currentTime = timeStart;
     graphic = [[graphXpos, axisYsize]];
     setTextStyle();
     updateGraphic();
-    drawThermocouple();
+    drawThermocouple(calculateThermocoupleCoordY(bodyTemp));
     updateTimerLabel(0);
 }
 setup();
