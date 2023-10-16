@@ -55,14 +55,15 @@ let timePass;
 let currentTime;
 
 let animationFrame = 0;
-let wasntAlert;
 
+const meeltingAlert = document.querySelector('#meeltingAlert');
+const overheatingAlert = document.querySelector('#overheatingAlert');
 const timerLabel = document.querySelector('.timer');
+
 const toggleBtn = document.querySelector('#toggleBtn');
 toggleBtn.addEventListener('click', ()=> {
     toggle();
-}
-);
+});
 
 function toggle() {
     if (isPower)
@@ -74,7 +75,8 @@ function toggle() {
 function turnPowerOn() {
     isPower = true;
     toggleBtn.innerHTML = 'Выключить';
-    stopLaborator();
+    toggleBtn.classList.remove('btn-secondary', 'btn-primary');
+    toggleBtn.classList.add('btn-danger');
     setup();
     startLaborator();
 }
@@ -82,6 +84,8 @@ function turnPowerOn() {
 function turnPowerOff() {
     isPower = false;
     toggleBtn.innerHTML = 'Включить';
+    toggleBtn.classList.remove('btn-primary', 'btn-danger');
+    toggleBtn.classList.add('btn-secondary');
 }
 
 function startLaborator() {
@@ -128,20 +132,26 @@ function calculateTemperature(timePass, deltaTime) {
     // Температура при плавлении постоянна
     if (bodyTemp > meeltingTemp)
     {
+        meeltingAlert.classList.remove('visually-hidden');
         return meeltingTemp;
     }
-    
+
+    hideAlerts();
     return bodyTemp;
 }
 
 function processOverheating() {
     bodyTemp = maxTemp;
-    if (!wasntAlert)
-        alert("Перегрев установки, следите за температурой");
+    overheatingAlert.classList.remove('visually-hidden');
     turnPowerOff();
 }
 
 function stopLaborator() {
+    toggleBtn.classList.remove('btn-danger', 'btn-secondary');
+    toggleBtn.classList.add('btn-primary');
+    
+    hideAlerts();
+
     window.cancelAnimationFrame(animationFrame);
     bodyTemp = roomTemp;
 }
@@ -205,8 +215,6 @@ function drawGraphLine() {
 }
 
 function drawGraphAxices() {
-    let timePass = 0;
-
     ctx.beginPath();    
     // Y
     ctx.moveTo(graphXpos, axisYsize);
@@ -242,8 +250,14 @@ function updateTimerLabel(timePass) {
     timerLabel.innerHTML = timePass + ' c';
 }
 
+function hideAlerts() {
+    meeltingAlert.classList.add('visually-hidden');
+    overheatingAlert.classList.add('visually-hidden');
+}
+
 function setup() {
-    wasntAlert = false;
+    hideAlerts();
+
     timeStart = new Date();
     currentTime = timeStart;
     graphic = [[graphXpos, axisYsize]];
