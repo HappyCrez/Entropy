@@ -43,7 +43,6 @@ const roomTemp = 24;
 let bodyTemp;
 let temperature;
 
-
 // Graphic
 let graphCoordX, graphCoordY;
 let thermocoupleCoordY;
@@ -56,6 +55,7 @@ let timePass;
 let currentTime;
 
 let animationFrame = 0;
+let wasAlert;
 
 const timerLabel = document.querySelector('.timer');
 const toggleBtn = document.querySelector('#toggleBtn');
@@ -87,7 +87,7 @@ function turnPowerOff() {
 function startLaborator() {
     animationFrame = requestAnimationFrame(startLaborator);
 
-    let deltaTime = currentTime - new Date().getTime();
+    let deltaTime = new Date().getTime() - currentTime;
     currentTime = new Date().getTime();
     timePass = (currentTime - timeStart) / 1000;
 
@@ -136,7 +136,8 @@ function calculateTemperature(timePass, deltaTime) {
 
 function processOverheating() {
     bodyTemp = maxTemp;
-    alert("Перегрев установки, следите за температурой");
+    if (wasAlert)
+        alert("Перегрев установки, следите за температурой");
     turnPowerOff();
 }
 
@@ -242,6 +243,7 @@ function updateTimerLabel(timePass) {
 }
 
 function setup() {
+    wasAlert = false;
     timeStart = new Date();
     currentTime = timeStart;
     graphic = [[graphXpos, axisYsize]];
