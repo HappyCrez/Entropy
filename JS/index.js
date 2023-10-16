@@ -55,7 +55,7 @@ let timePass;
 let currentTime;
 
 let animationFrame = 0;
-let wasAlert;
+let wasntAlert;
 
 const timerLabel = document.querySelector('.timer');
 const toggleBtn = document.querySelector('#toggleBtn');
@@ -136,7 +136,7 @@ function calculateTemperature(timePass, deltaTime) {
 
 function processOverheating() {
     bodyTemp = maxTemp;
-    if (wasAlert)
+    if (!wasntAlert)
         alert("Перегрев установки, следите за температурой");
     turnPowerOff();
 }
@@ -243,7 +243,7 @@ function updateTimerLabel(timePass) {
 }
 
 function setup() {
-    wasAlert = false;
+    wasntAlert = false;
     timeStart = new Date();
     currentTime = timeStart;
     graphic = [[graphXpos, axisYsize]];
