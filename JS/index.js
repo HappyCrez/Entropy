@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 350 + window.innerWidth / 5;
+canvas.width = 350 + window.innerWidth / 10;
 canvas.height = 230;
 
 // Graph X axis
@@ -59,13 +59,37 @@ let timePass;
 let currentTime;
 
 let animationFrame = 0;
+let isInstructionOpen = false;
 
 const meeltingAlert = document.querySelector('#meeltingAlert');
 const overheatingAlert = document.querySelector('#overheatingAlert');
 const timerLabel = document.querySelector('.timer');
 
+const mainBlock = document.querySelector('.mainBlock');
+const instructionBlock = document.querySelector('.instructionBlock');
+
+const instructBtn = document.querySelector('#instructBtn');
+instructBtn.addEventListener('click', () => {
+    if (isInstructionOpen)
+        instructionClose();
+    else
+        instructionOpen();
+});
+
+function instructionClose() {
+    isInstructionOpen = false;
+    mainBlock.classList.remove('visually-hidden');
+    instructionBlock.classList.add('visually-hidden');
+}
+
+function instructionOpen () {
+    isInstructionOpen = true;
+    mainBlock.classList.add('visually-hidden');
+    instructionBlock.classList.remove('visually-hidden');
+}
+
 const toggleBtn = document.querySelector('#toggleBtn');
-toggleBtn.addEventListener('click', ()=> {
+toggleBtn.addEventListener('click', () => {
     toggle();
 });
 
@@ -79,7 +103,7 @@ function toggle() {
 function turnPowerOn() {
     isPower = true;
     toggleBtn.innerHTML = 'Выключить';
-    toggleBtn.classList.remove('btn-secondary', 'btn-primary');
+    toggleBtn.classList.remove('btn-secondary', 'btn-success');
     toggleBtn.classList.add('btn-danger');
     setup();
     startLaborator();
@@ -88,7 +112,7 @@ function turnPowerOn() {
 function turnPowerOff() {
     isPower = false;
     toggleBtn.innerHTML = 'Включить';
-    toggleBtn.classList.remove('btn-primary', 'btn-danger');
+    toggleBtn.classList.remove('btn-success', 'btn-danger');
     toggleBtn.classList.add('btn-secondary');
 }
 
@@ -164,7 +188,7 @@ function processOverheating() {
 
 function stopLaborator() {
     toggleBtn.classList.remove('btn-danger', 'btn-secondary');
-    toggleBtn.classList.add('btn-primary');
+    toggleBtn.classList.add('btn-success');
     
     hideAlerts();
 

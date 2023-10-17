@@ -11,6 +11,19 @@ body{
     background-color: var(--main_light_color);
 }
 
+.head {
+    display: flex;
+}
+
+.head-text {
+    width: 70%;
+}
+
+.head-btn {
+    width: 30%;
+    text-align: right;
+}
+
 .bg1{
     background-color: var(--main_light_color);
 }
