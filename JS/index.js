@@ -4,15 +4,20 @@ const ctx = canvas.getContext('2d');
 canvas.width = 350 + window.innerWidth / 5;
 canvas.height = 230;
 
+// Graph X axis
+let graphStepAxisX = 15;
+
+if (window.innerWidth < 500) {
+    canvas.width = 350;
+    graphStepAxisX = 30;
+}
+
 // Graph Info
-let graphXpos = canvas.width / 3;
+let graphXpos = canvas.width / 3 + 40;
 let axisYsize = 200;
+let countNumsAtX = (canvas.width - graphXpos * 2 - 5) / 20 - 1;
 
 let graphTriangleSize = 10;
-
-// Graph X axis
-const graphStepAxisX = 15;
-let countNumsAtX = (canvas.width - graphXpos * 2 - 5) / 20 - 1;
 
 // Graph Y axis
 const maxValueY = 600;
@@ -193,12 +198,12 @@ function drawThermocoupleOutput() {
 function drawThermocoupleMarks() {
     for (let i = 1; i < thermocoupleCountNumsAtY; i++) {
         ctx.fillStyle = "black";
-        ctx.fillText((i * thermocoupleStepY) + "", thermocoupleDist * 1.5, axisYsize - i * thermocoupleNumsDistance);
+        ctx.fillText((i * thermocoupleStepY) + "", thermocoupleDist * 1.5, axisYsize - i * thermocoupleNumsDistance - 5);
 
         ctx.fillStyle = "gray";
-        ctx.fillRect(thermocoupleDist + thermocoupleDist / 4, axisYsize - i * thermocoupleNumsDistance + 5, thermocoupleDist / 2, 1);
+        ctx.fillRect(thermocoupleDist + thermocoupleDist / 4, axisYsize - i * thermocoupleNumsDistance, thermocoupleDist / 2, 1);
     }
-    ctx.fillRect(thermocoupleDist + thermocoupleDist / 4, axisYsize - thermocoupleCountNumsAtY * thermocoupleNumsDistance + 5, thermocoupleDist / 2, 1);
+    ctx.fillRect(thermocoupleDist + thermocoupleDist / 4, axisYsize - thermocoupleCountNumsAtY * thermocoupleNumsDistance, thermocoupleDist / 2, 1);
     ctx.fillStyle = "black";
 }
 
@@ -268,7 +273,7 @@ function hideAlerts() {
 
 function setup() {
     hideAlerts();
-    
+
     bodyTemp = roomTemp;
     timeStart = new Date();
     currentTime = timeStart;
