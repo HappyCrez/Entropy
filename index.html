@@ -17,14 +17,40 @@
         <div class="container pt-5">
             <div class="row">
                 <div class="col">
-                  <h1>Определение Энтропии</h1>  
+                    <div class="head">
+                        <div class="head-text">
+                            <h1>Определение Энтропии</h1>                  
+                        </div>
+                        <div class="mt-2 head-btn">
+                            <button class="btn btn-primary" id="instructBtn">Инструкция<i class="bi bi-caret-down-square ms-2"></i></button>
+                        </div>  
+                    </div>
                   <hr>
                 </div>
             </div>
         </div>
     </header>
 
-    <section>
+    <section class="instructionBlock visually-hidden">
+        <div class="container">
+            <h3>Иструкция к выполнению</h3>
+            <ul class="list-group list-group-flush mb-1">
+                <li class="list-group-item">1. Включите установку в сеть. Запишите показания милливольтметра через каждые 10 секунд при нагревании и 
+                    плавлении олова. Результаты измерений занесите в таблицу.</li>
+                <li class="list-group-item">2. Когда олово расплавится выключите установку и, продолжая отсчет времени, снимите аналогичные измерения при 
+                    охлаждении олова</li>
+                <li class="list-group-item">3. По приведенному на установке градуировочному графику переведите показания милливольтметра в значения 
+                    температуры</li>
+                <li class="list-group-item">4. Постройте график зависимости температуры от времени Т=f (t).</li>
+                <li class="list-group-item">5. По графику определите температуру плавления олова. Этой температуре соответствует участок кривой, 
+                    параллельной оси времени.</li>
+                <li class="list-group-item">6. По формуле <img src="../Assets/formula.png" width="200px" alt="#формула#"> вычислите приращение энтропии при нагревании и плавлении олова.</li>
+              </ul>
+              <img  class="mb-4" src="../Assets/table.png" alt="#таблица#" width="80%">
+        </div>
+    </section>
+
+    <section class="mainBlock">
         <div class="container mt-2">
             <div class="row mb-5">
                 <div class="col-lg-6 col-sm-12 mb-sm-5">
@@ -45,11 +71,11 @@
                     <h3 class="mb-5">График:</h3>
                     <canvas class="mb-5"></canvas>
 
-                    <div  class="col-12 mb-4">
+                    <div  class="col-12 mb-5">
                         <div class="blockInfo">
                             <div class="timer">0 c</div>
                             <div class="controll-elements">
-                                <button class="btn btn-primary" id="toggleBtn">Включить</button>
+                                <button class="btn btn-success" id="toggleBtn">Включить</button>
                             </div>
                         </div>
                     </div>
